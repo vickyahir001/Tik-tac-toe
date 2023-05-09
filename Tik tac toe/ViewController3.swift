@@ -14,56 +14,57 @@ class ViewController3 : UIViewController {
 
     
     
+    @IBOutlet weak var olb: UILabel!
+    @IBOutlet weak var xlb: UILabel!
     @IBOutlet var buttons: [UIButton]!
-    @IBOutlet weak var xScore: UILabel!
-      @IBOutlet weak var oScore: UILabel!
       @IBOutlet weak var xScoreLabel: UILabel!
       @IBOutlet weak var oScoreLabel: UILabel!
+      var a : Int = 0
+      var b : Int = 0
       var boarder = [String]()
       var currentPlayer = ""
-      var point = 0
       var score = 0
-      
       var values = [[0,1,2],[3,4,5],[6,7,8],
                     [0,3,6],[1,4,7],[2,5,8],
                     [0,4,8],[2,4,6]]
-      
       override func viewDidLoad() {
           super.viewDidLoad()
           board()
           value()
          buttonSetup()
+          lableSetup()
       }
-      
       @IBAction func buttonsAction(_ sender: UIButton) {
-//          let buttons = sender as! UIButton
-         
-          let index = buttons.lastIndex(of: sender)!
-          if !boarder[index].isEmpty
+     let button = sender
+     let index = buttons.lastIndex(of: sender)!
+     if !boarder[index].isEmpty
           {
-              
-              return
-          }
+         return
+     }
           if currentPlayer == "O"
           {
               sender.setTitle("O", for: .normal)
               currentPlayer = "X"
               boarder[index] = "O"
-              
-//              buttons.backgroundColor = UIColor(red: 198/255, green:27/255, blue:68/255, alpha: 2)
+              button.backgroundColor = UIColor(red: 198/255, green:27/255, blue:68/255, alpha: 2)
           }
           else
           {
               sender.setTitle("X", for: .normal)
               currentPlayer = "O"
               boarder[index] = "X"
-//              buttons.backgroundColor = UIColor(red: 43/255, green: 89/255, blue: 255/255, alpha: 2)
-//
-             
+              button.backgroundColor = UIColor(red: 43/255, green: 89/255, blue: 255/255, alpha: 2)
           }
           value()
       }
-   
+    func scoreB() {
+        b = b + 1
+        oScoreLabel.text = b.description
+    }
+    func scoreA() {
+        a = a + 1
+        xScoreLabel.text = a.description
+    }
       func value()
       {
           for j in values
@@ -71,42 +72,46 @@ class ViewController3 : UIViewController {
               let player0 = boarder[j[0]]
               let player1 = boarder[j[1]]
               let player2 = boarder[j[2]]
-              
+              print("P0\(player0)   p1\(player1)  p2\(player2)")
               if player0 == player1,
                  player1 == player2,
                  !player2.isEmpty
+                   
               {
-                 
-                  showalert(title: "Awasom win is \(player2)!")
-                  return
+                  reload()
+                  if player2 == "X" {
+                      scoreA()
+                  }
+                  else
+                  {
+                      scoreB()
+                  }
+                  showalert(title: "Awasom win is \(player2)!🥳")
+                  currentPlayer = "X"
+                  clearColor()
               }
               else if !boarder.contains("")
              {
-                 showalert(title: "It's a tie")
-               
+                 showalert(title: "It's a tie😐")
+                 clearColor()
              }
-             
-               
           }
       }
       func reload()
       {
           boarder.removeAll()
-   
           board()
           for k in buttons
           {
               k.setTitle(nil, for: .normal)
           }
       }
-      
       func showalert(title:String)
       {
           let alert = UIAlertController(title: "", message: title, preferredStyle: .alert)
           alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: { _ in
-              self.reload()
+          self.reload()
           }))
-         
           present(alert, animated: true, completion: nil)
       }
       func board()
@@ -164,7 +169,22 @@ class ViewController3 : UIViewController {
           buttons[6].layer.backgroundColor = UIColor.lightGray.cgColor
           buttons[7].layer.backgroundColor = UIColor.lightGray.cgColor
           buttons[8].layer.backgroundColor = UIColor.lightGray.cgColor
-  
+          
       }
+    func lableSetup(){
+        
+        xScoreLabel.layer.shadowColor = UIColor.gray.cgColor
+        xScoreLabel.layer.shadowOffset = CGSize(width: 5, height: 5)
+        xScoreLabel.layer.shadowOpacity = 10
+        oScoreLabel.layer.shadowColor = UIColor.gray.cgColor
+        oScoreLabel.layer.shadowOffset = CGSize(width: 5, height: 5)
+        oScoreLabel.layer.shadowOpacity = 10
+        xlb.layer.shadowColor = UIColor.gray.cgColor
+        xlb.layer.shadowOffset = CGSize(width: 5, height: 5)
+        xlb.layer.shadowOpacity = 10
+        olb.layer.shadowColor = UIColor.gray.cgColor
+        olb.layer.shadowOffset = CGSize(width: 5, height: 5)
+       olb.layer.shadowOpacity = 10
 
+    }
   }

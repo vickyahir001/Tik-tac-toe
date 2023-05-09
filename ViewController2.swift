@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController2: UIViewController {
 
+    @IBOutlet weak var towPlayerBt: UIButton!
     @IBOutlet weak var singalPlyerbt: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,7 +17,7 @@ class ViewController2: UIViewController {
         
     }
     
-    @IBAction func singalPlyeraction(_ sender: Any) {
+    @IBAction func towPlayerBtAction(_ sender: Any) {
         
             let a = storyboard?.instantiateViewController(withIdentifier: "ViewController3") as! ViewController3
             navigationController?.pushViewController(a, animated: true)

@@ -1,11 +1,6 @@
 {
   "images" : [
     {
-      "filename" : "bg5.jpeg",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
       "idiom" : "universal",
       "scale" : "1x"
     },
