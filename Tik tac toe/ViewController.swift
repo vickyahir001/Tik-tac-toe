@@ -29,7 +29,7 @@ class playGame: UIViewController {
             var a : Float = 0.0
             self.pg.progress = 0
         timer = Timer.scheduledTimer(withTimeInterval: 0.050, repeats: true, block: { [self] _ in
-                a += 0.01
+                a += 0.03
                 self.pg.progress = a
                 if self.pg.progress == 1.0{
                     self.timer.invalidate()
