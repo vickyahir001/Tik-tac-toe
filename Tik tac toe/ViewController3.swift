@@ -21,7 +21,6 @@ class ViewController3 : UIViewController {
     @IBOutlet weak var oScoreLabel: UILabel!
     var a : Int = 0
     var b : Int = 0
-    var c : Int = 0
     var boarder = [String]()
     var currentPlayer = ""
     var score = 0
@@ -34,6 +33,7 @@ class ViewController3 : UIViewController {
         value()
         buttonSetup()
         lableSetup()
+       
     }
     @IBAction func buttonsAction(_ sender: UIButton) {
         let button = sender
@@ -42,19 +42,19 @@ class ViewController3 : UIViewController {
         {
             return
         }
-        if currentPlayer == "X"
+        if currentPlayer == "O"
         {
-            sender.setTitle("X", for: .normal)
-            currentPlayer = "O"
-            boarder[index] = "X"
+            sender.setTitle("O", for: .normal)
+            currentPlayer = "X"
+            boarder[index] = "O"
             print(index)
             button.backgroundColor = UIColor(red: 198/255, green:27/255, blue:68/255, alpha: 2)
         }
         else
         {
-            sender.setTitle("O", for: .normal)
-            currentPlayer = "X"
-            boarder[index] = "O"
+            sender.setTitle("X", for: .normal)
+            currentPlayer = "O"
+            boarder[index] = "X"
             button.backgroundColor = UIColor(red: 43/255, green: 89/255, blue: 255/255, alpha: 2)
         }
         value()
@@ -77,7 +77,7 @@ class ViewController3 : UIViewController {
             let player2 = boarder[j[2]]
             print("P0\(player0)   p1\(player1)  p2\(player2)")
             if player0 == player1,
-               player1 == player2,
+                player1 == player2,
                !player2.isEmpty
                 
             {
@@ -91,7 +91,8 @@ class ViewController3 : UIViewController {
                 }
                 
                 showalert(title: "Awasom win is \(player2)!🥳")
-                currentPlayer = "O"
+              
+                currentPlayer = "X"
                 
                 clearColor()
             }
@@ -103,7 +104,7 @@ class ViewController3 : UIViewController {
             }
         }
     }
-    func reload()
+func reload()
     {
         boarder.removeAll()
         board()
